@@ -1,0 +1,30 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/*
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'  # or change to match your project version
+
+    - name: Install Dependencies
+      run: npm install  # change this if you are using Python, Java etc.
+
+    - name: Run Unit Tests
+      run: npm test  # change this if your testing command is different
+
+    - name: Build Application
+      run: npm run build  # change this if your project uses another build command
